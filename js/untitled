@@ -1,0 +1,45 @@
+$first_name = $_POST['first_name'] != "" ?  $_POST['first_name'] : $errorCount ++;
+ 
+ $last_name = $_POST['last_name'] != "" ?  $_POST['last_name'] : $errorCount ++;
+ 
+ $email = $_POST['email'] != "" ?  $_POST['email'] : $errorCount ++;
+
+ $password= $_POST['password'] != "" ? $_POST['password'] : $errorCount++;
+
+ 
+ $gender = $_POST['gender'] != "" ?  $_POST['gender'] : $errorCount ++;
+ 
+ $department = $_POST['department'] != "" ?  $_POST['department'] : $errorCount ++;
+
+ $designation = $_POST['designation'] != "" ? $_POST['designation'] : $errorCount ++;
+ 
+
+
+
+
+ $errorCount = 0;
+
+$first_name = $_POST['first_name']; !=  "" ? $_POST['first_name'] :  $errorCount ++ ;
+
+$last_name = $_POST['last_name'] != "" ? $_POST['last_name'] : $errorCount ++;
+
+$email = $_POST['email'] != "" ? $_POST['email'] : $errorCount ++ ;
+
+$password = $_POST['password'] != "" ? $_POST['password'] : $errorCount ++ ;
+
+$gender = $_POST['gender'] != "" ? $_POST['gender'] : $errorCount ++ ;
+
+$designation= $_POST['designation'] != "" ? $_POST['designation'] : $errorCount ++ ;
+
+$department= $_POST['department'] != "" ? $_POST['department'] : $errorCount ++ ;
+
+
+
+if($errorCount > 0){
+	header("location: register.php");
+
+}
+
+else{
+ 	echo "Success";
+}
