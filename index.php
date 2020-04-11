@@ -3,7 +3,9 @@
  include_once('lib/header.php');
  ?>
 	
-	Welcome to Gift Registry    
+	Welcome to Start Ng Hospital: Hospital for the Ignorant.
+
+	We teach, God imparts.   
 
 
 	<?php

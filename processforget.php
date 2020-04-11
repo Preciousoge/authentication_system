@@ -36,9 +36,9 @@ if($errorCount > 0){
 			
 			"CC: somebodyelse@example.com";
 
-			$omena = mail($email,$subject,$txt,$headers);
+			$try = mail($email,$subject,$txt,$headers);
 
-			if($omena){ $_SESSION["error"] = "Password reset link has been sent to your email:" . $email ;
+			if($try){ $_SESSION["message"] = "Password reset link has been sent to your email:" . $email ;
 			header("location:login.php");
 	
 

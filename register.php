@@ -138,36 +138,36 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 				<option
 				<?php
 
-			if (isset($_SESSION['designation']) && $_SESSION['designation'] == 'Vendor') {
+			if (isset($_SESSION['designation']) && $_SESSION['designation'] == 'medicalTeam') {
 		 	echo "selected" ;
 		 }
 
 			?>
 
-				>Vendor</option>
+				>Medical Team(MT)</option>
 				<option
 				<?php
 
-			if (isset($_SESSION['designation']) && $_SESSION['designation'] == 'User') {
+			if (isset($_SESSION['designation']) && $_SESSION['designation'] == 'patient') {
 		 	echo "selected" ;
 		 }
 
 			?>
 
 
-				>User</option>
+				>Patient</option>
 				<option
 
 				<?php
 
-			if (isset($_SESSION['designation']) && $_SESSION['designation'] == 'Guest') {
+			if (isset($_SESSION['designation']) && $_SESSION['designation'] == 'medicalDirector') {
 		 	echo "selected" ;
 		 }
 
 			?>
 
 
-				>Guest</option>
+				>Medical Director</option>
 
 			</select>
 
