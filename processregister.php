@@ -31,12 +31,21 @@ $_SESSION ['department'] = $department;
 
 
 if($errorCount > 0){
-	$_SESSION["error"] = "You have"   .  $errorCount  .   " errors in your submission" ;
-	header("location: register.php");
-}
 
-//assign userid after count
-else {
+
+	$session_error = "You have"   .  $errorCount  .   " error";
+
+	if($errorCount > 1) {
+		$session_error .= "s";
+	}
+
+	$session_error .= " in your submisson" ;
+	$_SESSION["error"] = $session_error;
+
+	header("location: register.php");
+
+}else {
+ 	
  	
  	$allUsers = scandir("db/users/");
  	
@@ -44,8 +53,6 @@ else {
  	
  	$newUserId = ($countAllUsers - 1);
  	
-
-
 
 
 
@@ -80,7 +87,7 @@ else {
 //save to database
 
 	file_put_contents("db/users/" . $email. "json",json_encode( $userObject));
-	$_SESSION["message"] = "Registration Successful, You can now login!" . $first_name ;
+	$_SESSION["message"] = "Registration Successful, You can now login" . $first_name ;
 	
 	header("location: login.php");
 

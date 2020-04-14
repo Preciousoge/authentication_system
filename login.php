@@ -5,33 +5,44 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 	//redirect to dashboard
 	header("location:dashboard.php");}
 
- //include_once('lib/header.php');
-
+  
 ?>
-	
-	<form method="POST" action="processlogin.php" >
 
+<h3>Login Form</h3>
+	
 	<p>
 		<?php
-		 if (isset($_SESSION["message"]) && !empty($_SESSION["message"])) {
-		 	echo "<span style='color:green'>" . $_SESSION["message"] . "</span>";	 
+			if (isset($_SESSION["message"]) && !empty($_SESSION["message"])) {
+		 		echo "<span style='color:green'>" . $_SESSION["message"] . "</span>";	 
 
-			session_destroy();
-		 }
+				session_destroy();
+			}
 		
 
 		?>
-
-
 	</p>
 
+ 	<form method="POST" action="processlogin.php" >
+ 	<p>
+ 		<?php
+		 
+			if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+		 	echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";	 
 
-<h3>Login Form</h3>
-<p>
+			session_destroy();
+			}
+		
+
+		?>
+ 	</p>
+
+
+		<p>
 		
 		
 			<label> Email</label> <br/>
 			<input 
+
 			<?php
 
 			if (isset($_SESSION['email']) && !empty($_SESSION['email'])) {
