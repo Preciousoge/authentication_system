@@ -1,4 +1,6 @@
-<?php include_once('lib/header.php');
+<?php include_once('lib/header.php'); 
+require_once('functions/alerts.php');
+//include_once('functions/users.php');
 
 
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
@@ -17,16 +19,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 
 	<form method="POST" action="processregister.php" >
 	<p>
-		<?php
-		 
-		 if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-		 	echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";	 
-
-			session_destroy();
-		 }
-		
-
-		?>
+		<?php print_alert();?>
 
 	</p>
 
@@ -40,11 +33,11 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 
 			if (isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
 		 	echo "value=" . $_SESSION['first_name'];
-		 	//$_SESSION['first_name'] ="";
+		 	
 		 	}	 
 
 		 	?>
-			type="text" name="first_name" placeholder="First Name" >
+			type="text" name="first_name" placeholder="First Name" />
 
 	</p>
 
@@ -63,7 +56,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 			?>
 
 
-			type="text" name="last_name" placeholder="Last Name" >
+			type="text" name="last_name" placeholder="Last Name" />
 
 	</p>
 
@@ -83,7 +76,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 
 
 
-			type="email" name="email" placeholder="Email"  >
+			type="email" name="email" placeholder="Email"  />
 
 	</p>
 
@@ -91,7 +84,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 		
 		
 			<label> Password</label> <br/>
-			<input type="password" name="password" placeholder="Password" >
+			<input type="password" name="password" placeholder="Password" />
 
 	</p>
 
@@ -190,7 +183,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 
 
 
-			type="text" name="department" placeholder="Department" >
+			type="text" name="department" placeholder="Department" />
 
 	</p>
 	

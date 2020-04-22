@@ -1,19 +1,20 @@
+ 
+<?php 	include_once('lib/header.php');
+		require_once('functions/alerts.php');
+		require_once('functions/redirect.php');
 
-<?php include_once('lib/header.php');
 
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 	//redirect to dashboard
-	header("location:dashboard.php");}
-
-  
+	redirect_to("dashboard.php");
+} 
 ?>
 
-<h3>Login Form</h3>
-	
-	<p>
+
+<p>
 		<?php
-			if (isset($_SESSION["message"]) && !empty($_SESSION["message"])) {
-		 		echo "<span style='color:green'>" . $_SESSION["message"] . "</span>";	 
+			if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) {
+		 		echo "<span style='color:red'>" . $_SESSION["error"] . "</span>";	 
 
 				session_destroy();
 			}
@@ -22,20 +23,14 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 		?>
 	</p>
 
+<h3>Login Form</h3>
+	
+	<p>
+		<?php print_alert();?>
+	</p>
+
  	<form method="POST" action="processlogin.php" >
- 	<p>
- 		<?php
-		 
-			if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-		 	echo "<span style='color:red'>" . $_SESSION['error'] . "</span>";	 
-
-			session_destroy();
-			}
-		
-
-		?>
- 	</p>
-
+ 	
 
 		<p>
 		

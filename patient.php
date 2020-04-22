@@ -1,4 +1,4 @@
 <?php
 
-echo "User Dashboard" ;
+echo "Patients Content Displayed Here" ;
 ?>

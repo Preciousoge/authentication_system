@@ -1,4 +1,4 @@
-<?php session_start();
+ <?php session_start();
 
 $errorCount = 0;
 
@@ -25,8 +25,6 @@ if($errorCount > 0){
 else {
 
 
-
-
 	$allUsers = scandir("db/users/");
  	$countAllUsers = count($allUsers);
 
@@ -35,7 +33,7 @@ else {
 
  		$currentUser = $allUsers[$counter];
  		 
- 		 if($currentUser == $email . "json"){
+ 		 if($currentUser == $email . ".json"){
 
  			//check Password
 
@@ -51,56 +49,28 @@ else {
  			
 
  				$_SESSION['loggedIn'] = $userObject->id;
+ 				$_SESSION['email'] = $userObject->email;
  				
- 				
-
- 				//$_SESSION['loggedIn'] = $userObject->id;
- 				$_SESSION['fullname'] = $userObject->first_name. ""     .$userObject->last_name;
+ 				$_SESSION['fullname'] = $userObject->first_name  .   "   "   .   $userObject->last_name;
  				$_SESSION['role'] = $userObject->designation;
+ 				
 
  					header("location:dashboard.php");
  					
 
 
  				die();
-
-
- 			}
-
-
-
+			} 			
  			
+ 		} 			
+ 	}	
 
- 			
- 		 }
-
- 		
- 			
- 			
-
- 		
-
- 			/*
- 			if($userObject ->designation == 'Vendor'){
- 				header("location:vendor.php");
- 			*/ }	
-
-
-			/*	
- 				die();
- 			}
- 				
-
- 				
- 			
- 		} 
- 		
- 	}*/ 
+}
 
  	$_SESSION['error'] = "Invalid Email or password" ;
 			header("location: login.php");
 			die(); 
-} 
+ 
 
 
 ?>

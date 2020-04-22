@@ -1,4 +1,8 @@
-<?php session_start();
+ <?php session_start(); 
+require_once('functions/alerts.php');
+require_once('functions/redirect.php');
+require_once('functions/token.php');
+require_once('functions/email.php');
 
 // collect data
 
@@ -11,10 +15,21 @@ $_SESSION ['email'] = $email;
 
 
 if($errorCount > 0){
-	$_SESSION["error"] = "You have"   .  $errorCount  .   " errors in your submission" ;
-	header("location: forgot.php");
 
-} else {
+	$session_error = "You have"   .  $errorCount  .   " error";
+
+	if($errorCount > 1) {
+		$session_error .= "s";
+	}
+
+	$session_error .= " in your submisson" ;
+	
+	set_alert('error',$session_error);
+
+	redirect_to(" forgot.php");
+
+
+}else {
  	
  	$allUsers = scandir("db/users/");
  	
@@ -24,48 +39,39 @@ if($errorCount > 0){
 		
 		$currentUser = $allUsers[$counter];
 
-		if($currentUser == $email. "json") {
-			//echo "Baba, you go dey alright  ";
-			
+		if($currentUser == $email. ".json") {
+			//send mail and redirect to reset password page
 
-			
+			//generate token starts here
+			$token = generate_token();
+
+
+			//token generation ends here
+
+
+
+
 			$subject = "Password Reset Link";
-			$txt = "A password reset request has been initiated from your account. if you did not send this, ignore this message, otherwise, visit :localhost/pas/reset.php";
+			$message = "A password reset  has been initiated from your account. if you did not send this, ignore this message, otherwise, visit :localhost/projects/php/pas/reset.php?token=".$token;
 			
-			$headers = "From: no-reply@giftregistry.com" . "\r\n" .
+			$headers = "From: no-reply@snh.org" . "\r\n" .
 			
-			"CC: somebodyelse@example.com";
+			"CC: preciousoge98@gmail.com";
 
-			$try = mail($email,$subject,$txt,$headers);
-
-			if($try){ $_SESSION["message"] = "Password reset link has been sent to your email:" . $email ;
-			header("location:login.php");
-	
-
-			} else{
-				$_SESSION["error"] = "Something went wrong, we could not send password rest to " . $email ;
-	
-				header("location:forgot.php");
-			}
-
-			die();
+			file_put_contents("db/token/" . $email. ".json",json_encode(['token'=>$token]));
 
 
+			
+         send_mail($subject,$message,$email);
 
+         die();
 
+        }
+        
+    }
+    set_alert('error',"Email not registered with us ERR: " . $email);
+   
+    redirect_to("forgot.php");
 
-
-
-
-
-		}
-
-
-	}
-
-	$_SESSION["error"] = "Email not registered with us Err" . $email ;
-	header("location: forgot.php");
-	
 }
-
 
