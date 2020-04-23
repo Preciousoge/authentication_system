@@ -1,7 +1,10 @@
 <?php include_once('lib/header.php');
+require_once ('functions/redirect.php');
+require_once ('functions/users.php');
+re
 
-if(!isset($_SESSION['loggedIn'])){
-	redirect_to("login.php");
+if(!is_user_loggedIn()){
+redirect_to("login.php");
 }
 ?> 
 

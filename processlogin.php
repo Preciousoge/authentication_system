@@ -1,4 +1,6 @@
- <?php session_start();
+   <?php session_start();
+   require_once('functions/redirect.php');
+   require_once('functions/alerts.php');
 
 $errorCount = 0;
 
@@ -20,20 +22,18 @@ if($errorCount > 0){
 	$_SESSION["error"] = $session_error;
 
 
-	header("location: login.php");
+	
+	redirect_to(" login.php");
 	}
 else {
 
 
-	$allUsers = scandir("db/users/");
- 	$countAllUsers = count($allUsers);
+	$currentUser = find_user($email);
 
 
- 	for ($counter=0; $counter < $countAllUsers; $counter++) {
-
- 		$currentUser = $allUsers[$counter];
+ 	
  		 
- 		 if($currentUser == $email . ".json"){
+ 		 if($currentUser){
 
  			//check Password
 
@@ -54,21 +54,34 @@ else {
  				$_SESSION['fullname'] = $userObject->first_name  .   "   "   .   $userObject->last_name;
  				$_SESSION['role'] = $userObject->designation;
  				
-
- 					header("location:dashboard.php");
+ 				switch ($_SESSION['role']){
+ 					case 'medicalTeam':
+ 					redirect_to('medicalTeam.php');
+ 					break;
+ 					case "patient"
+ 					redirect_to('medicalTeam.php');
+ 					break;
+ 					case "medicalDirector"
+ 					redirect_to('superAdmin.php');
+ 					break;
+ 					default:
+ 					redirect_to('dashboard.php');
+ 				}
+ 					
+				redirect_to(" dashboard.php");
  					
 
 
  				die();
 			} 			
  			
- 		} 			
- 	}	
+ 		 			
+ 		}	
 
 }
 
- 	$_SESSION['error'] = "Invalid Email or password" ;
-			header("location: login.php");
+ 	set_alert('error', "Invalid Email or password" );
+			redirect_to("  login.php");
 			die(); 
  
 

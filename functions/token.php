@@ -15,7 +15,29 @@
 	return $token;		
 }
 
-function verify_token()
+function find_token($email='')
 {
-	
+	$allUserTokens = scandir("db/token/");
+	$countAllUserTokens = count($allUserTokens);
+
+	for ($counter = 0; $counter < $$countAllUserTokens; $counter++) {
+		
+		$currentTokenfile = $allUserTokens [$counter];
+
+		if($currentTokenfile == $email . ".json"){
+			
+			$tokenContent = file_get_contents("db/token/" . $currentTokenfile);
+
+			$tokenObject = json_decode($tokenContent);
+
+			//$tokenFromDB = $tokenObject -> token;
+			return $tokenObject;
+			
+
+		}
+	}
+
+
+	return false; 
 }
+

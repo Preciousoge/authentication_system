@@ -4,6 +4,7 @@ require_once('functions/redirect.php');
 require_once('functions/token.php');
 require_once('functions/email.php');
 
+
 // collect data
 
 $errorCount = 0;
@@ -52,13 +53,13 @@ if($errorCount > 0){
 
 
 			$subject = "Password Reset Link";
-			$message = "A password reset  has been initiated from your account. if you did not send this, ignore this message, otherwise, visit :localhost/projects/php/pas/reset.php?token=".$token;
+			$message = "A password reset  has been initiated from your account. if you did not send this, ignore this message, otherwise, visit :localhost/projects/php/pas/reset.php?token=" . $token;
 			
 			$headers = "From: no-reply@snh.org" . "\r\n" .
 			
 			"CC: preciousoge98@gmail.com";
 
-			file_put_contents("db/token/" . $email. ".json",json_encode(['token'=>$token]));
+			file_put_contents("db/token/" . $email. ".json",json_encode(['token'=> $token]));
 
 
 			

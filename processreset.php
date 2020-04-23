@@ -47,8 +47,8 @@ if($errorCount > 0){
 
                         $userObject->password = password_hash($password, PASSWORD_DEFAULT);
             
-                        //unlink("db/users/".$currentUser); //file delete, user data delete
-                        //unlink("db/token/".$currentUser); //file delete, token data delete
+                        unlink("db/users/".$currentUser); //file delete, user data delete
+                        unlink("db/token/".$currentUser); //file delete, token data delete
 
                         save_user($userObject);
 

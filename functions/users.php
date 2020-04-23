@@ -1,4 +1,5 @@
-<?php include_once('alerts.php');
+<?php require_once('alerts.php');
+	
 
 	function is_user_loggedIn(){
 

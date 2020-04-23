@@ -1,6 +1,6 @@
 <?php 
 
-require_once('alert.php');
+require_once('alerts.php');
 require_once('redirect.php');
 
 function send_mail(
@@ -17,7 +17,7 @@ function send_mail(
 
     if($try){
         
-        set_alert('message',"Password reset has been sent to your email: " . $email);        
+        set_alert('message',"Password reset link has been sent to your email: " . $email);        
         redirect_to("login.php");
 
     }else{
